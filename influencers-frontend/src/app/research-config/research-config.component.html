@@ -1,0 +1,179 @@
+<main>
+  <div>
+    <p class="inline"><a routerLink="/dashboard" style="color: #146D58">← Back to Dashboard</a></p>
+    <h2 class="inline">Research Tasks</h2>
+  </div>
+  <div style="background-color: #17212F" class="grey-border rounded-lg mx-10">
+    <form [formGroup]="form" (ngSubmit)="searchInfluencers()">
+      <div class="ms-5">
+        <fa-icon [icon]="faGear"></fa-icon>
+        <h3 class="inline">Research Information</h3>
+      </div>
+
+      <div class="flex justify-between ms-5 me-5 gap-3">
+        <div [class.selected]="Number(form.get('selectedOption')?.value) === 1" class="grey-border rounded-lg p-5 text-center flex-1">
+          <input
+            type="radio"
+            id="option1"
+            [value]="1"
+            formControlName="selectedOption"
+            class="hidden"
+          >
+          <label for="option1">
+            <h4>Specific Influencer</h4>
+            <p>Research a known health influencer by name</p>
+          </label>
+        </div>
+
+        <div [class.selected]="Number(form.get('selectedOption')?.value) === 2"  class="grey-border rounded-lg p-5 text-center flex-1">
+          <input
+            type="radio"
+            id="option2"
+            [value]="2"
+            formControlName="selectedOption"
+            class="hidden"
+          >
+          <label for="option2">
+            <h4>Discover New</h4>
+            <p>Find and analyze new health influencers</p>
+          </label>
+        </div>
+      </div>
+
+      @if (this.form.value.selectedOption === 1) {
+        <div class="flex flex-col lg:flex-row ms-5 me-5 gap-3">
+          <div class="flex-1">
+            <label for="timeRange">Time Range</label>
+            <div class="grid grid-cols-2 white-context text-center gap-3" id="timeRange">
+              <div class="grey-border py-3 rounded-lg" [class.selected]="selectedOption === 'lastWeek'" (click)="selectOption('lastWeek')">Last Week</div>
+              <div class="grey-border py-3 rounded-lg" [class.selected]="selectedOption === 'lastMonth'" (click)="selectOption('lastMonth')">Last Month</div>
+              <div class="grey-border py-3 rounded-lg" [class.selected]="selectedOption === 'lastYear'" (click)="selectOption('lastYear')">Last Year</div>
+              <div class="grey-border py-3 rounded-lg" [class.selected]="selectedOption === 'allTime'" (click)="selectOption('allTime')">All Time</div>
+            </div>
+
+            <div>
+              <label for="influencerName">Influencer Name</label>
+              <input
+                type="text"
+                id="influencerName"
+                placeholder="Enter influencer name"
+                formControlName="influencerName"
+                class="block py-3 px-6 rounded-lg text-white" style="background-color: #101827; width: -webkit-fill-available"
+                required
+              >
+            </div>
+
+            <div>
+              <label for="claimsPerInfluencer">Claims to Analyze Per Influencer</label>
+              <input
+                type="number"
+                id="claimsPerInfluencer"
+                [defaultValue]="50"
+                formControlName="claimsPerInfluencer"
+                class="block py-3 px-6 rounded-lg text-white" style="background-color: #101827; width: -webkit-fill-available"
+                required
+              >
+              <span>Recommended: 50-100 claims for comprehensive analysis</span>
+            </div>
+          </div>
+
+          <div class="flex-1">
+            <div>
+              <label for="findProducts">Products to Find Per Influencer</label>
+              <input
+                type="number"
+                id="findProducts"
+                [defaultValue]="10"
+                formControlName="productsPerInfluencer"
+                class="block py-3 px-6 rounded-lg text-white" style="background-color: #101827; width: -webkit-fill-available"
+              >
+            </div>
+
+            <div>
+              <label for="checkRevenueAnalysis">Include Revenue Analysis</label>
+              <input
+                type="checkbox"
+                id="checkRevenueAnalysis"
+                formControlName="includeRevenueAnalysis"
+              >
+              <span class="block">Analyze monetization methods and estimate earnings</span>
+            </div>
+
+            <div>
+              <label for="checkScientificJournals">Verify with Scientific Journals</label>
+              <input
+                type="checkbox"
+                id="checkScientificJournals"
+                formControlName="verifyWithScientificJournals"
+              >
+              <span class="block">Cross-reference claims with scientific literature</span>
+            </div>
+          </div>
+        </div>
+      } @else {
+
+      }
+      <div class="mx-5">
+        <label for="scientificJournal">Scientific Journals</label>
+        <div class="grid grid-cols-2 white-context text-center gap-3" id="scientificJournal">
+          <div
+            class="grey-border py-3 rounded-lg"
+            [class.selected]="form.value.selectedJournals?.includes('pubMedCentral')"
+            (click)="toggleJournal('pubMedCentral')">
+            PubMed Central
+          </div>
+          <div
+            class="grey-border py-3 rounded-lg"
+            [class.selected]="form.value.selectedJournals?.includes('science')"
+            (click)="toggleJournal('science')">
+            Science Central
+          </div>
+          <div
+            class="grey-border py-3 rounded-lg"
+            [class.selected]="form.value.selectedJournals?.includes('theLancet')"
+            (click)="toggleJournal('theLancet')">
+            The Lancet
+          </div>
+          <div
+            class="grey-border py-3 rounded-lg"
+            [class.selected]="form.value.selectedJournals?.includes('jamaNetwork')"
+            (click)="toggleJournal('jamaNetwork')">
+            JAMA Network
+          </div>
+          <div
+            class="grey-border py-3 rounded-lg"
+            [class.selected]="form.value.selectedJournals?.includes('nature')"
+            (click)="toggleJournal('nature')">
+            Nature
+          </div>
+          <div
+            class="grey-border py-3 rounded-lg"
+            [class.selected]="form.value.selectedJournals?.includes('cell')"
+            (click)="toggleJournal('cell')">
+            Cell
+          </div>
+          <div
+            class="grey-border py-3 rounded-lg"
+            [class.selected]="form.value.selectedJournals?.includes('newEnglandJournalOfMedicine')"
+            (click)="toggleJournal('newEnglandJournalOfMedicine')">
+            New England Journal of Medicine
+          </div>
+        </div>
+      </div>
+
+      <div class="mx-5">
+        <label for="researchAssistant">Notes for Research Assistant</label>
+        <textarea
+          id="researchAssistant"
+          placeholder="Add any specific instructions or focus areas..."
+          formControlName="notesForAssistant"
+          class="block py-3 px-6 rounded-lg text-white" style="background-color: #101827; width: -webkit-fill-available"
+        ></textarea>
+      </div>
+
+      <button type="submit" class="ms-5 py-3 px-6 rounded-lg" style="background-color: #146D58">
+        <fa-icon [icon]="faPlus"></fa-icon> Start Research
+      </button>
+    </form>
+  </div>
+</main>

@@ -1,0 +1,81 @@
+<!--<main class="leaderboard-container">-->
+<!--  <h1>Influencer Trust Leaderboard</h1>-->
+<!--  <p>-->
+<!--    Real-time rankings of health influencers based on scientific accuracy, credibility, and transparency.-->
+<!--    Updated daily using AI-powered analysis.-->
+<!--  </p>-->
+
+<!--  <div class="statistics flex gap-5">-->
+<!--    <div class="stat-card">-->
+<!--      <div class="icon"><fa-icon [icon]="faUser"></fa-icon></div>-->
+<!--      <div class="details">-->
+<!--        <div class="number">{{ activeInfluencers }}</div>-->
+<!--        <div>Active Influencers</div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div class="stat-card">-->
+<!--      <div class="icon"><fa-icon [icon]="faUser"></fa-icon></div>-->
+<!--      <div class="details">-->
+<!--        <div class="number">{{ claimsVerified }}</div>-->
+<!--        <div>Claims Verified</div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div class="stat-card">-->
+<!--      <div class="icon"><fa-icon [icon]="faUser"></fa-icon></div>-->
+<!--      <div class="details">-->
+<!--        <div class="number">{{ averageTrustScore }}</div>-->
+<!--        <div>Average Trust Score</div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+
+<!--  <div id="filters" class="filters">-->
+<!--    @for (filter of categories; track filter) {-->
+<!--      <button-->
+<!--        (click)="applyFilter(filter)"-->
+<!--        [class.active]="filter === selectedCategory">-->
+<!--        {{ filter }}-->
+<!--      </button>-->
+<!--    }-->
+<!--  </div>-->
+
+<!--  @if (influencers.length > 0) {-->
+<!--    <div>-->
+<!--      <table class="leaderboard-table">-->
+<!--        <thead>-->
+<!--        <tr>-->
+<!--          <th>RANK</th>-->
+<!--          <th>INFLUENCER</th>-->
+<!--          <th>CATEGORY</th>-->
+<!--          <th>TRUST SCORE</th>-->
+<!--          <th>TREND</th>-->
+<!--          <th>FOLLOWERS</th>-->
+<!--          <th>VERIFIED CLAIMS</th>-->
+<!--        </tr>-->
+<!--        </thead>-->
+<!--        <tbody>-->
+<!--        @for (influencer of filteredInfluencers; track influencer; let i = $index) {-->
+<!--          <tr>-->
+<!--            <td>{{ i + 1 }}</td>-->
+<!--            <td>{{ influencer.name }}</td>-->
+<!--            <td>{{ influencer.category }}</td>-->
+<!--            <td>{{ influencer.trustScore }}</td>-->
+<!--            <td>-->
+<!--              @if (influencer.trend === 'up') {-->
+<!--                <fa-icon [icon]="faArrowUp" class="icon-up"></fa-icon>-->
+<!--              }-->
+<!--              @if (influencer.trend === 'down') {-->
+<!--                <fa-icon [icon]="faArrowDown" class="icon-down"></fa-icon>-->
+<!--              }-->
+<!--            </td>-->
+<!--            <td>{{ influencer.followers }}</td>-->
+<!--            <td>{{ influencer.verifiedClaims }}</td>-->
+<!--          </tr>-->
+<!--        }-->
+<!--        </tbody>-->
+<!--      </table>-->
+<!--    </div>-->
+<!--  } @else {-->
+<!--    <p>No influencers found for the selected category.</p>-->
+<!--  }-->
+<!--</main>-->

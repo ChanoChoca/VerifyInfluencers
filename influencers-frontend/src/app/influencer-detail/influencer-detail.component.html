@@ -1,0 +1,111 @@
+<!--<main>-->
+<!--  <div class="flex">-->
+<!--    <div>-->
+<!--      <img [src]="influencer.image" alt="{{influencer.name}}">-->
+<!--    </div>-->
+<!--    <div>-->
+<!--      <h1>{{influencer.name}}</h1>-->
+<!--      <div class="flex">-->
+<!--        @for (categoryInfluencer of categoriesInfluencers; track categoryInfluencer) {-->
+<!--          <ng-container>-->
+<!--            <h3>{{categoryInfluencer.name}}</h3>-->
+<!--          </ng-container>-->
+<!--        }-->
+<!--      </div>-->
+<!--      <h3>{{influencer.description}}</h3>-->
+<!--    </div>-->
+<!--  </div>-->
+
+<!--  <div>-->
+<!--    <div>-->
+<!--      <h2>Trust Score</h2>-->
+<!--      @if (influencer.trustScore >= 50) {-->
+<!--        <fa-icon [icon]="faArrowUp"></fa-icon>-->
+<!--      }-->
+<!--      @if (influencer.trustScore < 50) {-->
+<!--        <fa-icon [icon]="faArrowDown"></fa-icon>-->
+<!--      }-->
+<!--      <h2>{{influencer.trustScore}}</h2>-->
+<!--      <span>Based on {{claims?.length || 0}} verified claims</span>-->
+<!--    </div>-->
+<!--    <div>-->
+<!--      <h2>Yearly Revenue</h2>-->
+<!--      <fa-icon [icon]="faDollarSign"></fa-icon>-->
+<!--      <h2>{{influencer.yearlyRevenue | currency}}</h2>-->
+<!--      <span>Estimated earnings</span>-->
+<!--    </div>-->
+<!--    <div>-->
+<!--      <h2>Products</h2>-->
+<!--      <fa-icon [icon]="faBagShopping"></fa-icon>-->
+<!--      <h2>{{influencer.products?.length || 0}}</h2>-->
+<!--      <span>Recommended products</span>-->
+<!--    </div>-->
+<!--    <div>-->
+<!--      <h2>Followers</h2>-->
+<!--      @if (influencer.followerTrend === 'up') {-->
+<!--        <fa-icon [icon]="faArrowUp"></fa-icon>-->
+<!--      }-->
+<!--      @if (influencer.followerTrend === 'down') {-->
+<!--        <fa-icon [icon]="faArrowDown"></fa-icon>-->
+<!--      }-->
+<!--      <h2>{{influencer.followers}}</h2>-->
+<!--      <span>Total following</span>-->
+<!--    </div>-->
+<!--  </div>-->
+
+<!--  <button (click)="showForm(1)">Claims Analysis</button>-->
+<!--  <button (click)="showForm(2)">Recommended Products</button>-->
+<!--  <button (click)="showForm(3)">Monetization</button>-->
+
+<!--  @if (option === 1) {-->
+<!--    <div>-->
+<!--      <form>-->
+<!--        <label for="searchClaim">Search Claims</label>-->
+<!--        <input type="text" id="searchClaim" placeholder="Search claims..." [(ngModel)]="searchClaim" name="searchClaim">-->
+
+<!--        <label for="categories">Categories</label>-->
+<!--        <select id="categories" name="categories" multiple [(ngModel)]="selectedCategories">-->
+<!--          @for (category of claimCategories; track category) {-->
+<!--            <option [value]="category.value">{{category.label}}</option>-->
+<!--          }-->
+<!--        </select>-->
+
+<!--        <label for="verificationStatus">Verification Status</label>-->
+<!--        <select id="verificationStatus" name="verificationStatus" [(ngModel)]="selectedVerificationStatus">-->
+<!--          @for (status of verificationStatuses; track status) {-->
+<!--            <option [value]="status.value">{{status.label}}</option>-->
+<!--          }-->
+<!--        </select>-->
+
+<!--        <label for="sortBy">Sort By</label>-->
+<!--        <select id="sortBy" name="sortBy" [(ngModel)]="sortBy">-->
+<!--          <option value="date">Date</option>-->
+<!--          <option value="trustScore">Trust Score</option>-->
+<!--        </select>-->
+<!--      </form>-->
+
+<!--      @if (claims?.length > 0) {-->
+<!--        <div>-->
+<!--          @for (claim of claims; track claim) {-->
+<!--            <div>-->
+<!--              <span>Verified <fa-icon [icon]="faCalendar"></fa-icon> {{claim.date}}</span>-->
+<!--              <h3>{{claim.description}}</h3>-->
+<!--              <p>-->
+<!--                <a href="{{claim.source}}" target="_blank">View Source <fa-icon [icon]="faArrowUpRightFromSquare"></fa-icon></a>-->
+<!--              </p>-->
+<!--              <div class="ps-3">-->
+<!--                <h3><fa-icon [icon]="faBrain"></fa-icon> AI Analysis</h3>-->
+<!--                <p>{{claim.aiAnalysis}}</p>-->
+<!--                <p>-->
+<!--                  <a href="{{claim.research}}" target="_blank">View Research <fa-icon [icon]="faArrowUpRightFromSquare"></fa-icon></a>-->
+<!--                </p>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          }-->
+<!--        </div>-->
+<!--      } @else {-->
+<!--        <p>No claims found.</p>-->
+<!--      }-->
+<!--    </div>-->
+<!--  }-->
+<!--</main>-->
