@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("/api/twitter")
 public class TwitterResource {
 
     private final TwitterApplicationService twitterApplicationService;
@@ -18,7 +19,7 @@ public class TwitterResource {
 
     @PostMapping("/influencer")
     public ResponseEntity<TwitterAPIResponse> getInfluencer(@RequestBody TwitterInfluencerDTO twitterInfluencerDTO) {
-        TwitterAPIResponse twitterResponse = twitterApplicationService.getUser(twitterInfluencerDTO);
+        TwitterAPIResponse twitterResponse = twitterApplicationService.getUserTweets(twitterInfluencerDTO);
         if (twitterResponse == null) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }

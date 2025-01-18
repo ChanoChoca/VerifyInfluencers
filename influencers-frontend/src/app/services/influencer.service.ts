@@ -22,20 +22,8 @@ export class InfluencerService {
     selectedJournals: string[] | null,
     notesForAssistant: string | null
   }>): Observable<TwitterApiResponse> {
-    let params = new HttpParams();
-
-    // Construir los parámetros solo si tienen valor
-    Object.keys(formData).forEach((key) => {
-      const value = formData[key as keyof Config];
-      if (value !== null && value !== undefined) {
-        params = params.append(key, String(value)); // Convertir a String para pasar a la URL
-      }
-    });
-
-    // Realizar la solicitud GET con los parámetros y la URL adecuada
-    return this.http.post<TwitterApiResponse>(`${environment.apiUrl}/influencers/influencer`, {
-      params: params
-    });
+    // Realizar la solicitud POST enviando el objeto JSON directamente
+    return this.http.post<TwitterApiResponse>(`${environment.apiUrl}/twitter/influencer`, formData);
   }
 
   // Paso 1: Crea un método para obtener los tweets recientes del influencer.

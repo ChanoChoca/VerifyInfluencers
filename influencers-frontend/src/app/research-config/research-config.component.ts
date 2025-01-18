@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {faGear, faPlus} from '@fortawesome/free-solid-svg-icons';
 import {FaIconComponent} from '@fortawesome/angular-fontawesome';
 import {InfluencerService} from '../services/influencer.service';
 import {TwitterApiResponse} from '../models/influencer.model';
 import {RouterLink} from '@angular/router';
+import {NgStyle} from '@angular/common';
 
 @Component({
   selector: 'app-research-config',
@@ -13,6 +13,7 @@ import {RouterLink} from '@angular/router';
     FaIconComponent,
     FormsModule,
     RouterLink,
+    NgStyle,
   ],
   templateUrl: './research-config.component.html',
   styleUrl: './research-config.component.css'
@@ -23,14 +24,14 @@ export class ResearchConfigComponent implements OnInit {
   selectedOptionLabel: string = 'Last Month';
 
   form = new FormGroup({
-    timeRange: new FormControl('lastMonth'), // String
-    influencerName: new FormControl(''), // String
-    claimsPerInfluencer: new FormControl(50), // Number
-    productsPerInfluencer: new FormControl(10), // Number
-    includeRevenueAnalysis: new FormControl(true), // Boolean
-    verifyWithScientificJournals: new FormControl(true), // Boolean
-    selectedJournals: new FormControl<string[]>([]), // Array
-    notesForAssistant: new FormControl(''), // String
+    timeRange: new FormControl('lastMonth'),
+    influencerName: new FormControl(''),
+    claimsPerInfluencer: new FormControl(50),
+    productsPerInfluencer: new FormControl(10),
+    includeRevenueAnalysis: new FormControl(true),
+    verifyWithScientificJournals: new FormControl(true),
+    selectedJournals: new FormControl<string[]>([]),
+    notesForAssistant: new FormControl(''),
     selectedOption: new FormControl(1)
   });
 
@@ -64,6 +65,24 @@ export class ResearchConfigComponent implements OnInit {
     }
   }
 
+  journals = [
+    'pubMedCentral',
+    'science',
+    'theLancet',
+    'jamaNetwork',
+    'nature',
+    'cell',
+    'newEnglandJournalOfMedicine',
+  ];
+
+  selectAllJournals(): void {
+    this.form.get('selectedJournals')?.setValue([...this.journals]);
+  }
+
+  deselectAllJournals(): void {
+    this.form.get('selectedJournals')?.setValue([]);
+  }
+
   searchInfluencers(): void {
     if (this.form.value.selectedOption === 1) {
       this.influencerService.searchInfluencer(this.form.value).subscribe({
@@ -80,8 +99,6 @@ export class ResearchConfigComponent implements OnInit {
     }
   }
 
-  protected readonly faGear = faGear;
-  protected readonly faPlus = faPlus;
   protected readonly String = String;
   protected readonly Number = Number;
 }

@@ -1,1 +1,53 @@
-<p>navbar works!</p>
+<div class="flex text-white items-center justify-around py-5">
+  <div>
+    <a>
+      <div routerLink="/" style="font-weight: bolder">Verify Influencers</div>
+    </a>
+  </div>
+  <div class="flex items-center gap-7 nav-buttons">
+    <a routerLink="/">Leaderboard</a>
+    <a routerLink="/">Products</a>
+    <a routerLink="/">Monetization</a>
+    <a routerLink="/">About</a>
+    <a routerLink="/">Contact</a>
+    <a routerLink="/">Admin</a>
+    @if (this.isConnected()) {
+      <ul>
+        <li>
+          <fa-icon [icon]="['fas', 'arrow-right-from-bracket']" class="me-2"></fa-icon>
+          <button (click)="logout()">Sign Out</button>
+        </li>
+      </ul>
+    } @else {
+      <ul>
+        <li>
+          <fa-icon [icon]="['fas', 'arrow-right-to-bracket']" class="me-2"></fa-icon>
+          <button class="link" (click)="login()">Sign In</button>
+        </li>
+      </ul>
+    }
+  </div>
+  @if (!isDesktopView) {
+    <button
+      (click)="toggleAsideMenu()"
+      class="menu-toggle-button text-center" style="display: block !important;"
+    ><fa-icon [icon]="['fas', 'bars']" class="menu-icon avatar-sm"></fa-icon>
+    </button>
+  }
+</div>
+<hr style="border-color: #313B4A">
+
+<!-- Menú desplegable-->
+<aside class="aside-menu" [class.open]="isAsideMenuOpen">
+  <button class="close-aside-button" (click)="toggleAsideMenu()">
+    <fa-icon [icon]="['fas', 'xmark']" class="close-icon"></fa-icon>
+  </button>
+  <ul>
+    <li class="mt-5"><a routerLink="/">Leaderboard</a></li>
+    <li><a routerLink="/">Products</a></li>
+    <li><a routerLink="/">Monetization</a></li>
+    <li><a routerLink="/">About</a></li>
+    <li><a routerLink="/">Contact</a></li>
+    <li><a routerLink="/">Admin</a></li>
+  </ul>
+</aside>

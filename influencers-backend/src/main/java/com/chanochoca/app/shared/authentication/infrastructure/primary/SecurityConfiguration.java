@@ -19,7 +19,7 @@ public class SecurityConfiguration {
     http.authorizeHttpRequests(authorize ->
         authorize
           // Used to allow endpoints to be used without being authenticated and authorized
-//          .requestMatchers(HttpMethod.GET, "api/aaa").permitAll()
+          .requestMatchers(HttpMethod.POST, "/api/twitter/influencer").permitAll()
           .requestMatchers("/api/**").authenticated())
       .csrf(AbstractHttpConfigurer::disable)
       .oauth2ResourceServer(

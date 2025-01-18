@@ -62,7 +62,7 @@ interface Users {
 
 // Respuesta general de la API (principal)
 export interface TwitterApiResponse {
-  data: Users[]; // Usuarios obtenidos
+  data: Users; // Usuarios obtenidos
   errors?: Array<{ detail: string; status: number; title: string; type: string }>; // Errores
   includes: {
     media: Media[]; // Medios relacionados

@@ -1,7 +1,9 @@
 import { IconDefinition } from '@fortawesome/angular-fontawesome';
 import {
+  faArrowLeft,
+  faArrowRightFromBracket, faArrowRightToBracket, faBars,
   faCartShopping,
-  faCheck,
+  faCheck, faCircle, faGear, faPlus, faRightToBracket,
   faShoppingCart,
   faTruckFast,
   faUser,
@@ -25,4 +27,12 @@ export const fontAwesomeIcons: IconDefinition[] = [
   faCheck,
   faShoppingCart,
   faCircleCheck,
+  faArrowRightToBracket,
+  faArrowRightFromBracket,
+  faArrowLeft,
+  faGear,
+  faXmark,
+  faBars,
+  faPlus,
+  faCircle
 ];
