@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <!-- Secuencia para TwitterUser -->
+    <changeSet id="00000000000002-twitteruser-seq" author="chanochoca">
+        <createSequence sequenceName="twitter_user_sequence" startValue="1" incrementBy="1"/>
+    </changeSet>
+
+    <!-- Tabla TwitterUser -->
+    <changeSet id="00000000000002-twitteruser" author="chanochoca">
+        <createTable tableName="twitter_user">
+            <column name="id" type="varchar(36)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="username" type="varchar(256)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="description" type="varchar(1000)"/>
+            <column name="image_url" type="varchar(512)"/>
+            <column name="created_date" type="timestamp"/>
+            <column name="last_modified_date" type="timestamp"/>
+        </createTable>
+    </changeSet>
+
+    <!-- Tabla intermedia para la relación TwitterUser-Tweet -->
+    <changeSet id="00000000000002-twitteruser-tweet" author="chanochoca">
+        <createTable tableName="twitter_user_tweet">
+            <column name="twitter_user_id" type="varchar(36)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="tweet_id" type="varchar(36)"> <!-- Cambiado de bigint a varchar(36) -->
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint baseColumnNames="twitter_user_id" baseTableName="twitter_user_tweet"
+                                 constraintName="fk_twitteruser_tweet_user_constraint"
+                                 referencedColumnNames="id" referencedTableName="twitter_user"
+                                 onDelete="CASCADE"/>
+
+        <addForeignKeyConstraint baseColumnNames="tweet_id" baseTableName="twitter_user_tweet"
+                                 constraintName="fk_twitteruser_tweet_tweet_constraint"
+                                 referencedColumnNames="id" referencedTableName="tweet"
+                                 onDelete="CASCADE"/>
+    </changeSet>
+</databaseChangeLog>

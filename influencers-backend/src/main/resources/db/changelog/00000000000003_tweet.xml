@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+  <!-- Secuencia para la tabla tweet -->
+  <changeSet id="00000000000003-tweet-seq" author="chanochoca">
+    <createSequence sequenceName="tweet_sequence" startValue="1" incrementBy="1"/>
+  </changeSet>
+
+  <!-- Creación de la tabla tweet -->
+  <changeSet id="00000000000003-tweet" author="chanochoca">
+    <createTable tableName="tweet">
+      <column name="id" type="varchar(36)">
+        <constraints primaryKey="true" nullable="false"/>
+      </column>
+      <column name="text" type="varchar(280)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="date" type="timestamp">
+        <constraints nullable="false"/>
+      </column>
+      <column name="link" type="varchar(512)"/>
+    </createTable>
+  </changeSet>
+
+</databaseChangeLog>

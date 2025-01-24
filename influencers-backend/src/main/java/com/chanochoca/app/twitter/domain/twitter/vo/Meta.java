@@ -1,4 +1,4 @@
-package com.chanochoca.app.twitter.domain.twitter.aggregate;
+package com.chanochoca.app.twitter.domain.twitter.vo;
 
 public class Meta {
 
